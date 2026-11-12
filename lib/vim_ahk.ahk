@@ -232,7 +232,6 @@ class VimAhk{
     DefaultList := ["ahk_exe Evernote.exe"  ; Evernote
                   , "ahk_exe metaeditor.exe"  ; Meta Editor
                   , "ahk_exe explorer.exe"  ; Explorer
-                  , "ahk_exe WindowsTerminal.exe"  ; Windows Terminal
                   , "ahk_exe powershell.exe"  ; Powershell
                   , "ahk_exe notepad.exe"   ; NotePad
                   , "OneNote"               ; OneNote at Windows 10

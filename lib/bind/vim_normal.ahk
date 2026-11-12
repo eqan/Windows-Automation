@@ -21,19 +21,6 @@ u::Send,^z
   Clipboard := bak
 Return
 
-+z::Vim.State.SetMode("Z")
-#If Vim.IsVimGroup() and (Vim.State.IsCurrentVimMode("Z"))
-+z::
-  Send, ^s
-  Send, !{F4}
-  Vim.State.SetMode("Vim_Normal")
-Return
-
-+q::
-  Send, !{F4}
-  Vim.State.SetMode("Vim_Normal")
-Return
-
 #If Vim.IsVimGroup() and (Vim.State.IsCurrentVimMode("Vim_Normal"))
 Space::Send, {Right}
 

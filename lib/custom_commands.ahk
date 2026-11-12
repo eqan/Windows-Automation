@@ -29,23 +29,16 @@ Return
   }
 Return
 
-; Function to Quit an application
-; #q::
-; KeyWait, q, T0.01
-; 	If ErrorLevel
-; 		PostMessage, 0x112, 0xF060,,, A ; Using PostMessage  to close a window
-; return
-
 ; Function to Call Live Draw
 
 #\::
   Run,"D:\Softwares\Live Draw\LiveDraw.exe"
 return
 
-; Function to Call the brave browser
+; Function to Call the Zen Browser
 
 #b::
-  Run,"C:\Users\eqana\AppData\Local\BraveSoftware\Brave-Browser-Nightly\Application\brave.exe"
+  Run, zen.exe
 return
 
 ; Function to Call the word

@@ -8,7 +8,7 @@
     ;@Ahk2Exe-IgnoreEnd
     this.PossibleVimModes := ["Vim_Normal", "Insert", "Replace", "Vim_ydc_y"
     , "Vim_ydc_c", "Vim_ydc_d", "Vim_VisualLine", "Vim_VisualFirst"
-    , "Vim_VisualChar", "Command", "Command_w", "Command_q", "Z", ""
+    , "Vim_VisualChar", "Command", "Command_w", ""
     , "r_once", "r_repeat", "Vim_VisualLineFirst"]
 
     this.Mode := "Insert"

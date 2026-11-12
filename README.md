@@ -298,7 +298,6 @@ y/d/c+Move Command can be used, too.
 |/| Start search (search box will be opened)|
 |n/N| Search next/previous (Some applications support only next search)|
 |*| Search the word under the cursor.|
-|ZZ/ZQ|Save and Quit/Quit.|
 
 ## Available commands in visual mode
 
@@ -317,8 +316,6 @@ y/d/c+Move Command can be used, too.
 |ESC/Ctrl-[| Enter the the normal mode.|
 |w + RETURN| Save |
 |w + SPACE | Save as |
-|w + q| Save and Quit |
-|q | Quit |
 |h | Open help of the application|
 
 ## Application specific settings
