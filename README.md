@@ -53,6 +53,10 @@ Clone vim_ahk and go vim_ahk folder, and run **build.bat**.
 You will find **vim_ahk** folder which contains **vim_ahk.exe** and **vim_ahk_icons**.
 
 ## Applications (VimGroup)
+
+Windows Terminal (`WindowsTerminal.exe`/`wt.exe`) and Zen Browser (`zen.exe`)
+are always excluded. In Normal mode, unused keys are blocked so text cannot be
+typed accidentally; press `i` to return to Insert mode.
 The default setting enables vim-mode for the following applications:
 
 * Notepad (メモ帳)

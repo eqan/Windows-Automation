@@ -114,7 +114,7 @@ class VimAhk{
     this.AddToConf("VimTwoLetter", "", ""
       , "Two-letter to enter the normal mode"
       , "When these two letters are pressed together in insert mode, enters the normal mode.`n`nSet one per line, exactly two letters per line.`nThe two letters must be different.")
-    this.AddToConf("VimDisableUnused", 1, 1
+    this.AddToConf("VimDisableUnused", 3, 3
       , "Disable unused keys in the normal mode"
       , "1: Do not disable unused keys`n2: Disable alphabets (+shift) and symbols`n3: Disable all including keys with modifiers (e.g. Ctrl+Z)")
     this.AddToConf("VimSetTitleMatchMode", "2", "2"
@@ -224,6 +224,12 @@ class VimAhk{
     this.__About()
     this.SetExistValue()
     this.Ini.ReadIni()
+    ; Migrate old installations which explicitly persisted the previous
+    ; permissive value. Normal mode must block text input by default.
+    if(this.Conf["VimDisableUnused"]["val"] != 3){
+      this.Conf["VimDisableUnused"]["val"] := 3
+      VimDisableUnused := 3
+    }
     this.VimMenu.SetMenu()
     this.Setup()
   }
@@ -262,6 +268,11 @@ class VimAhk{
   }
 
   IsVimGroup(){
+    ; Never intercept Windows Terminal or Zen Browser, even if an old INI
+    ; file still contains either process in VimGroup.
+    if WinActive("ahk_exe WindowsTerminal.exe") || WinActive("ahk_exe wt.exe") || WinActive("ahk_exe zen.exe"){
+      Return False
+    }
     if(this.Conf["VimAppList"]["val"] == "Allow List"){
       Return WinActive("ahk_group " . this.GroupName)
     }else if(this.Conf["VimAppList"]["val"] == "Deny List"){

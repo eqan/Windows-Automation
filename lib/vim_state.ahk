@@ -195,6 +195,9 @@
 
   SetStatusCheck(){
     check := this.StatusCheckObj
+    ; Set the correct tray state immediately instead of waiting for the first
+    ; timer tick. Excluded applications therefore show the gray icon at once.
+    this.StatusCheck()
     if(this.Vim.Conf["VimIconCheckInterval"]["val"] > 0){
       SetTimer, % check, % this.Vim.Conf["VimIconCheckInterval"]["val"]
     }else{
