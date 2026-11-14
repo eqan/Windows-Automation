@@ -19,14 +19,15 @@ Return
   }
 Return
 
-; Function to run terminal as admin and in maximized form
+; Function to run WezTerm as admin and in maximized form
 
 #x::
-  try {
-    Run *RunAs wt, , max
-  } catch {
-    MsgBox, Could not obtain admin privileges.
+  weztermPath := "C:\Program Files\WezTerm\wezterm-gui.exe"
+  if !FileExist(weztermPath) {
+    MsgBox, WezTerm was not found at %weztermPath%.
+    Return
   }
+  Run *RunAs "%weztermPath%", , max
 Return
 
 ; Function to Call Live Draw
