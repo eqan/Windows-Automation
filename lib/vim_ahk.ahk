@@ -268,9 +268,9 @@ class VimAhk{
   }
 
   IsVimGroup(){
-    ; Never intercept Windows Terminal or Zen Browser, even if an old INI
+    ; Never intercept terminal emulators or Zen Browser, even if an old INI
     ; file still contains either process in VimGroup.
-    if WinActive("ahk_exe WindowsTerminal.exe") || WinActive("ahk_exe wt.exe") || WinActive("ahk_exe zen.exe"){
+    if WinActive("ahk_exe WindowsTerminal.exe") || WinActive("ahk_exe wt.exe") || WinActive("ahk_exe wezterm-gui.exe") || WinActive("ahk_exe wezterm.exe") || WinActive("ahk_exe zen.exe"){
       Return False
     }
     if(this.Conf["VimAppList"]["val"] == "Allow List"){
