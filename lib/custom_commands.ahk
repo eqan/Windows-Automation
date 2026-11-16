@@ -1,12 +1,22 @@
-; Hide or show desktop icons
-#h::
-  ControlGet, HWND, Hwnd,, SysListView321, ahk_class Progman
-  If HWND =
-    ControlGet, HWND, Hwnd,, SysListView321, ahk_class WorkerW
-  If DllCall("IsWindowVisible", UInt, HWND)
-    WinHide, ahk_id %HWND%
-  Else
-    WinShow, ahk_id %HWND%
+#MenuMaskKey vkFF
+
+; Toggle desktop icons: hidden by default, reveal temporarily when needed.
+^!d::
+  RegRead, HideIcons, HKCU, Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced, HideIcons
+  if (HideIcons = 1)
+    RegWrite, REG_DWORD, HKCU, Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced, HideIcons, 0
+  else
+    RegWrite, REG_DWORD, HKCU, Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced, HideIcons, 1
+  DllCall("Shell32\SHChangeNotify", "UInt", 0x08000000, "UInt", 0, "Ptr", 0, "Ptr", 0)
+Return
+
+; Open Keypirinha directly; its built-in Everything package provides fast file search.
+#s::
+  Run, "C:\Users\eqan\AppData\Local\Keypirinha\keypirinha.exe" --show,, Hide
+Return
+
+#+s::
+  Run, "C:\Program Files\Flameshot\bin\flameshot.exe" gui --clipboard,, Hide
 Return
 
 ; Function to run vscode as admin and in maximized form
@@ -56,9 +66,9 @@ Return
   Run,"C:\Users\Eqan Ahmad\Desktop\jcpicker.exe"
 return
 
-; Function to Call the live draw
+; Restart the complete elevated Komorebi stack without opening a console window.
 #o::
-  Run,"C:\Program Files\workspacer\workspacer.exe"
+  Run, powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\Users\eqan\.config\dotfiles-windows\komorebi\restart-komorebi.ps1", , Hide
 return
 
 ; Function to Call the task manager
@@ -104,33 +114,6 @@ Unique_Alt_Tab_Windows()
   }
   return alt_tab_list
 }
-
-; Function that cycles through opened apps synchronously
-
-#IfWinActive
-#j::
-
-  alt_tab_list := Unique_Alt_Tab_Windows()
-  initial_window := alt_tab_list[2]
-  WinActivate, ahk_id %initial_window%
-  active_index := 2
-  Loop
-  {
-
-    KeyWait, j, DT0.5
-    if !ErrorLevel
-    {
-      active_index++
-      this_window := alt_tab_list[active_index]
-      WinActivate, ahk_id %this_window%
-    }
-    if(active_index >= alt_tab_list.MaxIndex())
-    {
-      alt_tab_list := Unique_Alt_Tab_Windows()
-      active_index := 1
-    }
-  } until (!GetKeyState("Alt", "P"))
-return
 
 ; Function to hide and show hidden files
 
