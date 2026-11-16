@@ -27,6 +27,11 @@ Return
   Run, "C:\Users\eqan\AppData\Local\Keypirinha\keypirinha.exe" --show,, Hide
 Return
 
+; Launch the already-running Flameshot daemon directly.
+#+s::
+  Run, "C:\Program Files\Flameshot\bin\flameshot.exe" gui --clipboard,, Hide
+Return
+
 ; Function to run vscode as admin and in maximized form
 
 #v::
