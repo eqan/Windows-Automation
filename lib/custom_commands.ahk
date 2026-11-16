@@ -1,5 +1,17 @@
 #MenuMaskKey vkFF
 
+; Keypirinha system power palette (Alt+P; search namespace: power:)
+!p::
+  Run, "C:\Users\eqan\AppData\Local\Keypirinha\keypirinha.exe" --show,, Hide
+  Sleep, 80
+  SendInput, ^a{Backspace}power:
+Return
+
+; Open Ditto clipboard history through its supported single-instance command.
+^+h::
+  Run, "C:\Program Files\Ditto\Ditto.exe" -open,, Hide
+Return
+
 ; Toggle desktop icons: hidden by default, reveal temporarily when needed.
 ^!d::
   RegRead, HideIcons, HKCU, Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced, HideIcons
@@ -13,10 +25,6 @@ Return
 ; Open Keypirinha directly; its built-in Everything package provides fast file search.
 #s::
   Run, "C:\Users\eqan\AppData\Local\Keypirinha\keypirinha.exe" --show,, Hide
-Return
-
-#+s::
-  Run, "C:\Program Files\Flameshot\bin\flameshot.exe" gui --clipboard,, Hide
 Return
 
 ; Function to run vscode as admin and in maximized form
